@@ -1,0 +1,1 @@
+# rails6-capistrano-psql
