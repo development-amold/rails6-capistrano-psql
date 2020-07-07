@@ -81,7 +81,7 @@ test:
 
 staging:
   <<: *default
-  database: rails6psqlapp_production
+  database: rails6psqlapp_staging
   username: amol #rails6psqlapp
   password: amol #<%= ENV['RAILS6PSQLAPP_DATABASE_PASSWORD'] %>
 

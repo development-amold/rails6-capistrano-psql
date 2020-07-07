@@ -33,6 +33,7 @@ server "ec2-15-207-19-162.ap-south-1.compute.amazonaws.com", user: "ubuntu", rol
 # http://capistranorb.com/documentation/getting-started/configuration/
 # Feel free to add new variables to customise your setup.
 
+set :stage, :staging
 
 
 # Custom SSH Options
