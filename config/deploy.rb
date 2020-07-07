@@ -21,7 +21,7 @@ set :deploy_to, "/var/www/html/#{fetch :application}"
 # set :pty, true
 
 # Default value for :linked_files is []
-append :linked_files, %w{"config/master.key"}
+append :linked_files, "config/master.key"
 # set :linked_files, %w{config/master.key}
 # append :linked_files, %w{config/master.key}
 
