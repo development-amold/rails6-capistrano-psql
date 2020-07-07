@@ -26,6 +26,19 @@ append :linked_files, "config/master.key"
 # append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system", "public/uploads"
 
 
+
+
+task :precompile do
+  on roles :web do
+    within release_path do
+      with rails_env: fetch(:rails_env) do
+        execute :bundle, "exec rake assets:precompile"
+      end
+    end
+  end
+end
+
+
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
 
