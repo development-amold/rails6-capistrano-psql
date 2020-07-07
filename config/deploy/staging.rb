@@ -32,7 +32,20 @@ server "ec2-15-207-19-162.ap-south-1.compute.amazonaws.com", user: "ubuntu", rol
 # For available Capistrano configuration variables see the documentation page.
 # http://capistranorb.com/documentation/getting-started/configuration/
 # Feel free to add new variables to customise your setup.
+append :linked_files, "config/credentials/staging.key"
+set :linked_files, %w{config/staging.key}
 
+namespace :deploy do
+  namespace :check do
+    before :linked_files, :set_master_key do
+      on roles(:app), in: :sequence, wait: 10 do
+        unless test("[ -f #{shared_path}/config/staging.key ]")
+          upload! 'config/staging.key', "#{shared_path}/config/staging.key"
+        end
+      end
+    end
+  end
+end
 
 
 # Custom SSH Options
