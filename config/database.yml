@@ -78,6 +78,14 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
+
+staging:
+  <<: *default
+  database: rails6psqlapp_production
+  username: amol #rails6psqlapp
+  password: amol #<%= ENV['RAILS6PSQLAPP_DATABASE_PASSWORD'] %>
+
+
 production:
   <<: *default
   database: rails6psqlapp_production
