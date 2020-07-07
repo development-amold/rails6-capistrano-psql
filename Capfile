@@ -35,6 +35,10 @@ require "capistrano/rails/migrations"
 require "capistrano/passenger"
 require 'capistrano/rvm'
 
+
+
+# https://www.digitalocean.com/community/tutorials/how-to-install-rails-and-nginx-with-passenger-on-ubuntu
+
 #----------------- Post-install message from capistrano-passenger:---------------
 # ==== Release notes for capistrano-passenger ====
 # passenger once had only one way to restart: `touch tmp/restart.txt`

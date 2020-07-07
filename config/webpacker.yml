@@ -76,6 +76,10 @@ development:
       ignored: '**/node_modules/**'
 
 
+staging:
+  <<: *default
+  compile: true
+
 test:
   <<: *default
   compile: true
