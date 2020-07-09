@@ -3,9 +3,7 @@
 # Defines a single server with a list of roles and multiple properties.
 # You can define all roles on a single server, or split them:
 
-#ubuntu@ec2-15-207-19-162.ap-south-1.compute.amazonaws.com
-
-server "13.126.230.212", user: "ubuntu", roles: %w{app db web}, my_property: :my_value
+# server "example.com", user: "deploy", roles: %w{app db web}, my_property: :my_value
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
 
@@ -33,8 +31,7 @@ server "13.126.230.212", user: "ubuntu", roles: %w{app db web}, my_property: :my
 # http://capistranorb.com/documentation/getting-started/configuration/
 # Feel free to add new variables to customise your setup.
 
-set :migration_role, :app
-set :rails_env, 'staging'
+
 
 # Custom SSH Options
 # ==================
