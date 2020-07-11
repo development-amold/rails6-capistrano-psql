@@ -39,19 +39,52 @@ namespace :deploy do
   end
 end
 
-# task :deploy do
-#   namespace :assets do
-#    desc "Precompile assets locally and then rsync to deploy server"
-#     task :precompile, :only => { :primary => true } do
-#       run_locally "bundle exec rake assets:precompile"
-#       servers = find_servers :roles => [:app], :except => { :no_release => true }
-#       servers.each do |server|
-#         run_locally "rsync -av ./public/#{assets_prefix}/ #{user}@#{server}:#{current_path}/public/#{assets_prefix}/"
+# after "deploy:setup", "deploy:create_release_dir"
+# namespace :deploy do
+# end
+
+# namespace :deploy do
+#   desc 'Run bin webpack'
+#   task :bin_webpack do
+#     on roles(:web) do
+#       within release_path do
+#         with rails_env: fetch(:rails_env) do
+#           execute :bundle, 'exec rails assets:precompile'
+#         end  
 #       end
-#       run_locally "rm -rf public/#{assets_prefix}"
 #     end
 #   end
 # end
+
+
+  # task :example do
+  #   on roles(:app) do
+  #     execute "mkdir -p #{fetch :releases_path}"
+  #   end
+  # end
+  
+
+# namespace :deploy do
+#   namespace :assets do
+#     task :precompile, :roles => :web, :except => { :no_release => true } do
+#       run "mkdir -p #{fetch :releases_path}"
+#       begin
+#         from = source.next_revision(current_revision) # <-- Fail here at first-time deploy because of current/REVISION absence
+#       rescue
+#         err_no = true
+#       end
+#       if err_no || capture("cd #{latest_release} && #{source.local.log(from)} vendor/assets/ app/assets/ | wc -l").to_i > 0     
+#         run %Q{cd #{latest_release} && #{rake} RAILS_ENV=#{rails_env} #{asset_env} assets:precompile}
+#       else
+#         logger.info "Skipping asset pre-compilation because there were no asset changes"
+#       end
+#    end
+#   end
+# end
+
+
+
+# set :assets_manifests, ['app/assets/config/manifest.js']
 
 
 # Default value for default_env is {}
