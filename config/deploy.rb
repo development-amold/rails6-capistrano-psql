@@ -103,7 +103,7 @@ end
 
 
 # set the locations that we will look for changed assets to determine whether to precompile
-set :assets_dependencies, %w(app/assets lib/assets Gemfile.lock config/routes.rb app/assets/manifest.js)
+set :assets_dependencies, %w(app/assets lib/assets Gemfile.lock config/routes.rb app/assets/config/manifest.js)
 
 # clear the previous precompile task
 Rake::Task["deploy:assets:precompile"].clear_actions
@@ -126,7 +126,7 @@ namespace :deploy do
               latest_release_path = releases_path.join(latest_release)
 
               # precompile if the previous deploy failed to finish precompiling
-              execute(:ls, latest_release_path.join('assets_manifest_backup')) rescue raise(PrecompileRequired)
+              # execute(:ls, latest_release_path.join('assets_manifest_backup')) rescue raise(PrecompileRequired)
 
               fetch(:assets_dependencies).each do |dep|
                 # execute raises if there is a diff
