@@ -68,13 +68,13 @@ set :rails_env, 'staging'
 
 # before "deploy:assets:precompile", "deploy:npm_install"
 
-namespace :deploy do
-  desc 'Run rake npm install'
-  task :npm_install do
-    on roles(:web) do
-      within release_path do
-        execute("cd #{release_path} && npm install")
-      end
-    end
-  end
-end
+# namespace :deploy do
+#   desc 'Run rake npm install'
+#   task :npm_install do
+#     on roles(:web) do
+#       within release_path do
+#         execute("cd #{release_path} && npm install")
+#       end
+#     end
+#   end
+# end
