@@ -1,5 +1,6 @@
 # config valid for current version and patch releases of Capistrano
-lock "~> 3.14.1"
+# lock "~> 3.14.1"
+lock "~> 3.11.2"
 
 set :application, "rails6-capistrano-psqlapp"
 set :repo_url, "git@github.com:development-amold/rails6-capistrano-psql.git"
@@ -24,7 +25,7 @@ set :deploy_to, "/var/www/html/#{fetch :application}"
 append :linked_files, "config/master.key"
 # Default value for linked_dirs is []
 # append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system", "public/uploads"
-
+append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', '.bundle', 'public/system', 'public/uploads', 'node_modules', 'public/packs'
 
 
 namespace :deploy do
@@ -39,22 +40,23 @@ namespace :deploy do
   end
 end
 
+after 'deploy:updated', 'deploy:assets:precompile_locally_copy'
 # after "deploy:setup", "deploy:create_release_dir"
 # namespace :deploy do
 # end
 
-namespace :deploy do
-  desc 'Run bin webpack'
-  task :bin_webpack do
-    on roles(:web) do
-      within release_path do
-        with rails_env: fetch(:rails_env) do
-          execute :bundle, 'exec rails assets:precompile'
-        end  
-      end
-    end
-  end
-end
+# namespace :deploy do
+#   desc 'Run bin webpack'
+#   task :bin_webpack do
+#     on roles(:web) do
+#       within release_path do
+#         with rails_env: fetch(:rails_env) do
+#           execute :bundle, 'exec rails assets:precompile'
+#         end  
+#       end
+#     end
+#   end
+# end
 
 
   # task :example do
