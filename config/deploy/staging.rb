@@ -35,7 +35,7 @@ server "13.232.210.113", user: "ubuntu", roles: %w{app db web}, my_property: :my
 
 set :migration_role, :app
 set :rails_env, 'staging'
-
+set :rvm_ruby_version, '2.7.1'
 
 
 # Custom SSH Options
