@@ -43,18 +43,18 @@ end
 # namespace :deploy do
 # end
 
-# namespace :deploy do
-#   desc 'Run bin webpack'
-#   task :bin_webpack do
-#     on roles(:web) do
-#       within release_path do
-#         with rails_env: fetch(:rails_env) do
-#           execute :bundle, 'exec rails assets:precompile'
-#         end  
-#       end
-#     end
-#   end
-# end
+namespace :deploy do
+  desc 'Run bin webpack'
+  task :bin_webpack do
+    on roles(:web) do
+      within release_path do
+        with rails_env: fetch(:rails_env) do
+          execute :bundle, 'exec rails assets:precompile'
+        end  
+      end
+    end
+  end
+end
 
 
   # task :example do
@@ -64,23 +64,24 @@ end
   # end
   
 
-namespace :deploy do
-  namespace :assets do
-    task :precompile, :roles => :web, :except => { :no_release => true } do
-      # run "mkdir -p #{fetch :releases_path}"
-      begin
-        from = source.next_revision(current_revision) # <-- Fail here at first-time deploy because of current/REVISION absence
-      rescue
-        err_no = true
-      end
-      if err_no || capture("cd #{latest_release} && #{source.local.log(from)} vendor/assets/ app/assets/ | wc -l").to_i > 0     
-        run %Q{cd #{latest_release} && #{rake} RAILS_ENV=#{rails_env} #{asset_env} assets:precompile}
-      else
-        logger.info "Skipping asset pre-compilation because there were no asset changes"
-      end
-   end
-  end
-end
+# namespace :deploy do
+#   namespace :assets do
+#     task :precompile, :roles => :web, :except => { :no_release => true } do
+#       # run "mkdir -p #{fetch :releases_path}"
+#       puts "------Started====="
+#       begin
+#         from = source.next_revision(current_revision) # <-- Fail here at first-time deploy because of current/REVISION absence
+#       rescue
+#         err_no = true
+#       end
+#       if err_no || capture("cd #{latest_release} && #{source.local.log(from)} vendor/assets/ app/assets/ | wc -l").to_i > 0     
+#         run %Q{cd #{latest_release} && #{rake} RAILS_ENV=#{rails_env} #{asset_env} assets:precompile}
+#       else
+#         logger.info "Skipping asset pre-compilation because there were no asset changes"
+#       end
+#    end
+#   end
+# end
 
 
 
