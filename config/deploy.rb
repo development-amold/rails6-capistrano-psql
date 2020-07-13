@@ -24,10 +24,9 @@ set :deploy_to, "/var/www/html/#{fetch :application}"
 # Default value for :linked_files is []
 append :linked_files, "config/master.key"
 # Default value for linked_dirs is []
-# append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system", "public/uploads"
 append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', '.bundle', 'public/system', 'public/uploads', 'node_modules', 'public/packs'
 
-
+#---MASTER.KEY file from localhost to server and stored in shraed folder
 namespace :deploy do
   namespace :check do
     before :linked_files, :set_master_key do
@@ -40,7 +39,9 @@ namespace :deploy do
   end
 end
 
-after 'deploy:updated', 'deploy:assets:precompile_locally_copy'
+# after 'deploy:updated', 'deploy:assets:precompile_locally_copy'
+
+
 # after "deploy:setup", "deploy:create_release_dir"
 # namespace :deploy do
 # end
