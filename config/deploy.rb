@@ -24,7 +24,7 @@ set :passenger_restart_with_sudo, true
 # set :pty, true
 
 # Default value for :linked_files is []
-append :linked_files, "config/master.key", "Passengerfile.json"
+append :linked_files, "config/master.key"#, "Passengerfile.json"
 # Default value for linked_dirs is []
 append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', '.bundle', 'public/system', 'public/uploads', 'node_modules', 'public/packs'
 
@@ -49,7 +49,7 @@ namespace :deploy do
   namespace :check do
     before :linked_files, :upload_files do
       on roles(:app), in: :sequence, wait: 10 do
-        ['config/master.key', 'Passengerfile.json'].each do |file|
+        ['config/master.key'].each do |file|
           unless test("[ -f #{shared_path}/#{file} ]")
             upload! file, "#{shared_path}/#{file}"
             # upload! 'Passengerfile.json', "#{shared_path}/Passengerfile.json"
