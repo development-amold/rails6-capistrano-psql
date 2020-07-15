@@ -11,6 +11,7 @@ set :repo_url, "git@github.com:development-amold/rails6-capistrano-psql.git"
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, "/var/www/html/#{fetch :application}"
 set :use_sudo, true
+set :passenger_restart_with_sudo, true
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
