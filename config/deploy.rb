@@ -28,12 +28,31 @@ append :linked_files, "config/master.key", "Passengerfile.json"
 append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', '.bundle', 'public/system', 'public/uploads', 'node_modules', 'public/packs'
 
 #---MASTER.KEY file from localhost to server and stored in shraed folder
+# namespace :deploy do
+#   namespace :check do
+#     before :linked_files, :set_master_key do
+#       on roles(:app), in: :sequence, wait: 10 do
+#         [].each do |file|
+
+#         end
+#         unless test("[ -f #{shared_path}/config/master.key ]")
+#           upload! 'config/master.key', "#{shared_path}/config/master.key"
+#           upload! 'Passengerfile.json', "#{shared_path}/Passengerfile.json"
+#         end
+#       end
+#     end
+#   end
+# end
+
 namespace :deploy do
   namespace :check do
-    before :linked_files, :set_master_key do
+    before :linked_files, :upload_files do
       on roles(:app), in: :sequence, wait: 10 do
-        unless test("[ -f #{shared_path}/config/master.key ]")
-          upload! 'config/master.key', "#{shared_path}/config/master.key"
+        ['config/master.key', 'Passengerfile.json'].each do |file|
+          unless test("[ -f #{shared_path}/#{file} ]")
+            # upload! 'config/master.key', "#{shared_path}/config/master.key"
+            # upload! 'Passengerfile.json', "#{shared_path}/Passengerfile.json"
+          end
         end
       end
     end
