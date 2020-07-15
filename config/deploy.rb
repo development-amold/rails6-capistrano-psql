@@ -10,8 +10,8 @@ set :repo_url, "git@github.com:development-amold/rails6-capistrano-psql.git"
 
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, "/var/www/html/#{fetch :application}"
-set :use_sudo, true
-set :passenger_restart_with_sudo, true
+# set :use_sudo, true
+# set :passenger_restart_with_sudo, true
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
@@ -24,7 +24,7 @@ set :passenger_restart_with_sudo, true
 # set :pty, true
 
 # Default value for :linked_files is []
-append :linked_files, "config/master.key"#, "Passengerfile.json"
+append :linked_files, "config/master.key"
 # Default value for linked_dirs is []
 append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', '.bundle', 'public/system', 'public/uploads', 'node_modules', 'public/packs'
 
