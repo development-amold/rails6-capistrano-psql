@@ -23,7 +23,7 @@ set :use_sudo, true
 # set :pty, true
 
 # Default value for :linked_files is []
-append :linked_files, "config/master.key", 'Passengerfile.json'
+append :linked_files, "config/master.key", "Passengerfile.json"
 # Default value for linked_dirs is []
 append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', '.bundle', 'public/system', 'public/uploads', 'node_modules', 'public/packs'
 
