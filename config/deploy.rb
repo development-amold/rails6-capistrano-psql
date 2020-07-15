@@ -50,7 +50,7 @@ namespace :deploy do
       on roles(:app), in: :sequence, wait: 10 do
         ['config/master.key', 'Passengerfile.json'].each do |file|
           unless test("[ -f #{shared_path}/#{file} ]")
-            # upload! 'config/master.key', "#{shared_path}/config/master.key"
+            upload! file, "#{shared_path}/#{file}"
             # upload! 'Passengerfile.json', "#{shared_path}/Passengerfile.json"
           end
         end
