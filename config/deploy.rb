@@ -11,7 +11,7 @@ set :repo_url, "git@github.com:development-amold/rails6-capistrano-psql.git"
 # Default deploy_to directory is /var/www/my_app_name
 
 # set :deploy_to, "/var/www/html/#{fetch :application}"
-set: :deploy_to, "/usr/share/nginx/html/#{fetch :application}"
+set :deploy_to, "/usr/share/nginx/html/#{fetch :application}"
 
 
 # set :use_sudo, true
