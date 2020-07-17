@@ -6,7 +6,7 @@
 #ubuntu@ec2-15-207-19-162.ap-south-1.compute.amazonaws.com
 
 #USE AWS IP
-server "13.127.212.201", user: "ubuntu", roles: %w{app db web}, my_property: :my_value
+server "15.207.16.225", user: "ubuntu", roles: %w{app db web}, my_property: :my_value
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
 
