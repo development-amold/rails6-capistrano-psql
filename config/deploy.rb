@@ -8,6 +8,8 @@ set :rvm_ruby_version, '2.7.1'
 
 set :deploy_via, :remote_cache
 
+set :keep_releases, 3
+
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 

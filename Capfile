@@ -33,7 +33,7 @@ require "capistrano/bundler"
 # require "capistrano/rails/assets"
 # require "capistrano/rails/migrations"
 require "capistrano/rails"
-# require "capistrano/passenger"
+# require "capistrano/passenger"  #---Need to comment out for local m/c cap deploy
 require 'capistrano/locally'
 
 
