@@ -9,7 +9,8 @@
 
 
 
-# role-based syntax
+# role-based syntaxset :application, "rails6-capistrano-psqlapp"
+
 # ==================
 
 # Defines a role with one or multiple servers. The primary server in each
@@ -17,7 +18,12 @@
 # property set. Specify the username and a domain or IP for the server.
 # Don't use `:all`, it's a meta role.
 
-# role :app, %w{deploy@example.com}, my_property: :my_value
+server 'localhost', user:"amol",roles: %w{app db web} # no need to set SSH configs.
+
+set :application, "rails6-capistrano-psqlapp"
+set :rails_env, 'development'
+set :deploy_to, "/home/amol/mycode/#{fetch :application}"
+
 # role :web, %w{user1@primary.com user2@additional.com}, other_property: :other_value
 # role :db,  %w{deploy@example.com}
 

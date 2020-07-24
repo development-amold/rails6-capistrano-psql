@@ -10,5 +10,22 @@
   <%= @post.body %>
 </p>
 
+
+
+<p>
+  <strong>User Account Name:</strong>
+  <%= render(AccountComponent.new(name: "#{@post.title}")) %>
+</p>
+
+<p>
+  <strong>User Account subdomain:</strong>
+  <%= render(AccountComponent.new(subdomain: "#{@post.body}")) %>
+</p>
+
+<p>
+  <strong>User Account Name with subdomain:</strong>
+  <%= render(AccountComponent.new(name: "#{@post.title}",subdomain: "#{@post.body}")).get_name_subdomain %>
+</p>
+
 <%= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Back', posts_path %>

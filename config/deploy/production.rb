@@ -3,9 +3,23 @@
 # Defines a single server with a list of roles and multiple properties.
 # You can define all roles on a single server, or split them:
 
-# server "example.com", user: "deploy", roles: %w{app db web}, my_property: :my_value
+server "app.mydb.com", user: "deploy", roles: %w{db} #db-server- deploy:migrate : all db related
+
+server "app.myapp.com", user: "deploy", roles: %w{app web} 
+#app: role is used by any task that runs on an application server, a server that generates dynamic content. In Rails this is puma server. Capistrano’s built-in tasks deploy:check, deploy:publishing or deploy:finished are all run in this role.
+#web: The web role is used by tasks that deal with web servers that serve static content, think Nginx here
+
+server "app.mysidekiq.com", user: "deploy", roles: %w{worker} #custom role
+
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
+
+set :application, "rails6-capistrano-psqlapp"
+set :branch, "master"
+set :rails_env, :production
+set :sidekiq_service_name, "production-sidekiq"
+set :deploy_to, "/var/www/html/#{fetch :application}"
+
 
 
 

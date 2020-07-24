@@ -6,7 +6,14 @@
 #ubuntu@ec2-15-207-19-162.ap-south-1.compute.amazonaws.com
 
 #USE AWS IP
-server "15.207.16.225", user: "ubuntu", roles: %w{app db web}, my_property: :my_value
+server "15.207.16.225", user: "ubuntu", roles: %w{app db web}, primary: true #first priority to execute
+
+set :application, "rails6-capistrano-psqlapp"
+
+set :rails_env, 'staging'
+set :deploy_to, "/var/www/html/#{fetch :application}"
+
+
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
 
@@ -34,8 +41,6 @@ server "15.207.16.225", user: "ubuntu", roles: %w{app db web}, my_property: :my_
 # http://capistranorb.com/documentation/getting-started/configuration/
 # Feel free to add new variables to customise your setup.
 
-set :migration_role, :app
-set :rails_env, 'staging'
 
 
 # Custom SSH Options

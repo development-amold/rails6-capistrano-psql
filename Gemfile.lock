@@ -72,6 +72,8 @@ GEM
       sshkit (>= 1.9.0)
     capistrano-bundler (1.6.0)
       capistrano (~> 3.1)
+    capistrano-locally (0.2.6)
+      capistrano (~> 3.0)
     capistrano-passenger (0.2.0)
       capistrano (~> 3.0)
     capistrano-rails (1.5.0)
@@ -197,6 +199,8 @@ GEM
     turbolinks-source (5.2.0)
     tzinfo (1.2.7)
       thread_safe (~> 0.1)
+    view_component (2.17.0)
+      activesupport (>= 5.0.0, < 7.0)
     web-console (4.0.3)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -225,6 +229,7 @@ DEPENDENCIES
   byebug
   capistrano (~> 3.11)
   capistrano-bundler (~> 1.6)
+  capistrano-locally
   capistrano-passenger
   capistrano-rails (~> 1.5)
   capistrano-rvm
@@ -240,6 +245,7 @@ DEPENDENCIES
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)
   tzinfo-data
+  view_component
   web-console (>= 3.3.0)
   webdrivers
   webpacker (~> 4.0)

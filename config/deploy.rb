@@ -2,16 +2,16 @@
 lock "~> 3.14.1"
 # lock "~> 3.11.2"
 
-set :application, "rails6-capistrano-psqlapp"
 set :repo_url, "git@github.com:development-amold/rails6-capistrano-psql.git"
 
 set :rvm_ruby_version, '2.7.1'
+
+set :deploy_via, :remote_cache
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, "/var/www/html/#{fetch :application}"
 # set :use_sudo, true
 # set :passenger_restart_with_sudo, true
 
@@ -62,53 +62,14 @@ namespace :deploy do
   end
 end
 
-# after 'deploy:updated', 'deploy:assets:precompile_locally_copy'
-
-
-# after "deploy:setup", "deploy:create_release_dir"
-# namespace :deploy do
-# end
-
-# namespace :deploy do
-#   desc 'Run bin webpack'
-#   task :bin_webpack do
-#     on roles(:web) do
-#       within release_path do
-#         with rails_env: fetch(:rails_env) do
-#           execute :bundle, 'exec rails assets:precompile'
-#         end  
-#       end
+# namespace :sidekiq do
+#   task :restart do
+#     on roles(:worker) do
+#       execute :sudo, :systemctl, :restart, "fetch(:sidekiq_service_name)"
 #     end
-#   end
+#   end  
 # end
-
-
-  # task :example do
-  #   on roles(:app) do
-  #     execute "mkdir -p #{fetch :releases_path}"
-  #   end
-  # end
-  
-
-# namespace :deploy do
-#   namespace :assets do
-#     task :precompile, :roles => :web, :except => { :no_release => true } do
-#       # run "mkdir -p #{fetch :releases_path}"
-#       puts "------Started====="
-#       begin
-#         from = source.next_revision(current_revision) # <-- Fail here at first-time deploy because of current/REVISION absence
-#       rescue
-#         err_no = true
-#       end
-#       if err_no || capture("cd #{latest_release} && #{source.local.log(from)} vendor/assets/ app/assets/ | wc -l").to_i > 0     
-#         run %Q{cd #{latest_release} && #{rake} RAILS_ENV=#{rails_env} #{asset_env} assets:precompile}
-#       else
-#         logger.info "Skipping asset pre-compilation because there were no asset changes"
-#       end
-#    end
-#   end
-# end
-
+# after "deploy:published", "sidekiq:restart"
 
 
 # set :assets_manifests, ['app/assets/config/manifest.js']

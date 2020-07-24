@@ -34,7 +34,7 @@ require "capistrano/bundler"
 # require "capistrano/rails/migrations"
 require "capistrano/rails"
 require "capistrano/passenger"
-
+require 'capistrano/locally'
 
 
 # https://www.digitalocean.com/community/tutorials/how-to-install-rails-and-nginx-with-passenger-on-ubuntu
