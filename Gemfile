@@ -45,7 +45,7 @@ group :development do
   gem 'capistrano-passenger'
   gem 'capistrano-rvm'
   gem 'capistrano-locally', require: false
-  # gem 'listen', '~> 3.2'  
+  gem 'listen', '~> 3.2'  
 end
 
 group :test do
