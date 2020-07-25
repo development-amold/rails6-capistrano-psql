@@ -64,20 +64,24 @@ namespace :deploy do
   end
 end
 
-before "deploy:rollback", "deploy:rollback_database"
+# before "deploy:rollback", "deploy:rollback_database"
+# namespace :deploy do
+#   desc "Rolls back database to migration level of the previously deployed release"
+#   task :rollback_database, :roles => :db, :only => { :primary => true } do
+#     if releases.length < 2
+#       abort "could not rollback the code because there is no prior release"
+#     else
+#       rake = fetch(:rake, "rake")
+#       rails_env = fetch(:rails_env)
+#       migrate_env = fetch(:migrate_env, "")
+#       migrate_target = fetch(:migrate_target, :latest)
+#       run "cd #{current_path}; #{rake} RAILS_ENV=#{rails_env} #{migrate_env} db:migrate VERSION=`cd #{File.join(previous_release, 'db', 'migrate')} && ls -1 [0-9]*_*.rb | tail -1 | sed -e s/_.*$//`"
+#     end
+#   end
+# end
 
-  desc "Rolls back database to migration level of the previously deployed release"
-  task :rollback_database, :roles => :db, :only => { :primary => true } do
-    if releases.length < 2
-      abort "could not rollback the code because there is no prior release"
-    else
-      rake = fetch(:rake, "rake")
-      rails_env = fetch(:rails_env)
-      migrate_env = fetch(:migrate_env, "")
-      migrate_target = fetch(:migrate_target, :latest)
-      run "cd #{current_path}; #{rake} RAILS_ENV=#{rails_env} #{migrate_env} db:migrate VERSION=`cd #{File.join(previous_release, 'db', 'migrate')} && ls -1 [0-9]*_*.rb | tail -1 | sed -e s/_.*$//`"
-    end
-  end
+before "deploy:rollback", "deploy:database:rollback"
+
 
 # namespace :sidekiq do
 #   task :restart do
