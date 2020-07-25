@@ -64,7 +64,7 @@ namespace :deploy do
   end
 end
 
-before "deploy:rollback:revision", "deploy:rollback_database"
+before "deploy:rollback", "deploy:rollback_database"
 
   desc "Rolls back database to migration level of the previously deployed release"
   task :rollback_database, :roles => :db, :only => { :primary => true } do
