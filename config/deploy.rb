@@ -72,7 +72,7 @@ before "deploy:rollback:revision", "deploy:rollback_database"
       abort "could not rollback the code because there is no prior release"
     else
       rake = fetch(:rake, "rake")
-      rails_env = fetch(:rails_env, "production")
+      rails_env = fetch(:rails_env)
       migrate_env = fetch(:migrate_env, "")
       migrate_target = fetch(:migrate_target, :latest)
       run "cd #{current_path}; #{rake} RAILS_ENV=#{rails_env} #{migrate_env} db:migrate VERSION=`cd #{File.join(previous_release, 'db', 'migrate')} && ls -1 [0-9]*_*.rb | tail -1 | sed -e s/_.*$//`"
