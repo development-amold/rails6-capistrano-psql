@@ -1,3 +1,3 @@
 class Activity < ApplicationRecord
-  #model
+  #model testing
 end
