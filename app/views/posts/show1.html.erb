@@ -24,7 +24,14 @@
 
 <p>
   <strong>User Account Name with subdomain:</strong>
-  <%= render(AccountComponent.new(name: "#{@post.title}",subdomain: "#{@post.body}")).get_name_subdomain %>
+  <%= render(AccountComponent.new(name: "#{@post.title}",subdomain: "#{@post.body}")) do |acc| %>
+    <%= acc.get_name_subdomain %>
+  <% end %>
+</p>
+
+<p>
+  <strong>User Apppointment Title:</strong>
+  <%= render(AppointmentslimComponent.new(title: "#{@post.title}",content: "#{@post.body}")) %>
 </p>
 
 <%= link_to 'Edit', edit_post_path(@post) %> |
