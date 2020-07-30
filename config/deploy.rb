@@ -32,7 +32,7 @@ set :keep_releases, 3  #---it will keep only last 3 release app_folder and older
 # Default value for :linked_files is []
 append :linked_files, "config/master.key"
 # Default value for linked_dirs is []
-append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', '.bundle', 'public/system', 'public/uploads', 'node_modules', 'public/packs'
+append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', '.bundle', 'public/system', 'public/uploads', 'node_modules', 'public/packs', "data"
 
 #---MASTER.KEY file from localhost to server and stored in shraed folder
 # namespace :deploy do
