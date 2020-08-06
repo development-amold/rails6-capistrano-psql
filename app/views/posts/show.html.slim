@@ -1,4 +1,5 @@
 p
+  = @post.title
   strong ---User Apppointment Title-----------:
   = render(AppointmentslimComponent.new(title: "#{@post.title}",content: "#{@post.body}"))
   strong ----Link-----
@@ -9,3 +10,32 @@ li
   = render(LinkComponent.new(href: "/posts"))
     span
       | This-is-link-end2
+div
+  - team_filepath = Rails.root.join('data','static', 'team.yml')
+  - if File.file?(team_filepath)
+    - team = YAML.load_file(team_filepath)
+    - team['members'].each do |member|
+        h2
+          | Name: 
+          = member['name']
+        h4 
+          | Title:
+          = member['title']
+  - else
+      h2 
+        = "File #{File.basename(team_filepath)} doesn't exist, please contact admin"
+div
+  h2 --Staff List---
+  - staff_filepath = Rails.root.join('data','static', 'staff.yml')
+  - if File.file?(staff_filepath)
+    - staff_tm = YAML.load_file(staff_filepath)  
+    - staff_tm['staff'].each do |member|
+        h2
+          | Name: 
+          = member['name']
+        h4 
+          | Title:
+          = member['title']
+  - else
+      h2
+        | Staff content not available, pls contact admin
