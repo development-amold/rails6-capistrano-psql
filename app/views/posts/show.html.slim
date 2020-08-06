@@ -1,3 +1,11 @@
 p
-  strong User Apppointment Title:
+  strong ---User Apppointment Title-----------:
   = render(AppointmentslimComponent.new(title: "#{@post.title}",content: "#{@post.body}"))
+  strong ----Link-----
+li
+  = link_to "#{root_path}" do
+    span This-is-link-end
+  h1 | ----passing do-end block content
+  = render(LinkComponent.new(href: "/posts"))
+    span
+      | This-is-link-end2
