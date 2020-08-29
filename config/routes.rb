@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
+  comfy_route :cms_admin, path: "/cms/admin"
+  # Ensure that this route is defined last
+  
+  comfy_route :blog_admin, path: "/admin"
+  comfy_route :blog, path: "/blog"
   resources :accounts
   resources :users
   resources :posts
   root "posts#index"
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  comfy_route :cms, path: "/"  #----this should be mandatory to be hosted on root dont change this one and put this one in the last
+
 end
